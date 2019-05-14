@@ -1,45 +1,20 @@
+from unittest import TestCase
+
 from roman_numerals import roman_for
 
 
-def test_converts_one():
-    assert roman_for(1) == "I"
+class TestRomanFor(TestCase):
 
-
-def test_converts_three():
-    assert roman_for(3) == "III"
-
-
-def test_converts_four():
-    assert roman_for(4) == "IV"
-
-
-def test_converts_five():
-    assert roman_for(5) == "V"
-
-
-def test_converts_six():
-    assert roman_for(6) == "VI"
-
-
-def test_converts_eight():
-    assert roman_for(8) == "VIII"
-
-
-def test_converts_nine():
-    assert roman_for(9) == "IX"
-
-
-def test_converts_ten():
-    assert roman_for(10) == "X"
-
-
-def test_converts_thirteen():
-    assert roman_for(13) == "XIII"
-
-
-def test_converts_forty():
-    assert roman_for(40) == "XL"
-
-
-
-
+    def test_converts(self):
+        assert roman_for(1) == "I"
+        assert roman_for(3) == "III"
+        assert roman_for(4) == "IV"
+        assert roman_for(5) == "V"
+        assert roman_for(8) == "VIII"
+        assert roman_for(9) == "IX"
+        assert roman_for(10) == "X"
+        assert roman_for(11) == "XI"
+        assert roman_for(14) == "XIV"
+        assert roman_for(80) == "LXXX"
+        assert roman_for(294) == "CCXCIV"
+        assert roman_for(2019) == "MMXIX"
