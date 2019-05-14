@@ -1,10 +1,8 @@
 from unittest import TestCase
 
-
-def is_leap(year):
-    return False
+from Leap_Year.is_leap import is_leap
 
 
-class TestIs_leap(TestCase):
+class TesIsLeap(TestCase):
     def test_is_leap(self):
         self.assertEqual(is_leap(4), True)
