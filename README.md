@@ -2,11 +2,11 @@ Katas in Python
 
 ### Considerations when writing a new test
 
-* Test should test one thing only
+* Test should test **one thing only**
 
-* Triangulate by adding new tests that force you code to pivot
+* **Triangulate** by adding new tests that force you code to **pivot**
 
-* Give tests meaningful names (behavior/goal-oriented) names that express your business domain
+* Give tests **meaningful names (behavior/goal-oriented)** names that express your **business domain**
 
   - Avoid technical names like `myMethodReturns5`
 
@@ -14,8 +14,8 @@ Katas in Python
 
   - Avoid writing technical tests; you should test behaviours, not the technicality of components
 
-* Make sure tests fail for the right reason
+* Make sure tests **fail for the right reason**
 
-* Ensure you have meaningful feedback from the failing test
+* Ensure you have **meaningful feedback from the failing** test
 
-* Organize your unit tests to reflect your production code
+* Organize your unit tests to **reflect your production code**
