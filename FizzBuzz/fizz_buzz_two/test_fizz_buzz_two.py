@@ -41,3 +41,10 @@ def test_divisible_by_five_one():
     When I fizzbuzz number 5, I get back  "Buzz"
     """
     assert fizz_buzz_two(5) == "Buzz"
+
+
+def test_divisible_by_five_and_trhee():
+    """
+    When I fizzbuzz number 15, I get back  "FizzBuzz"
+    """
+    assert fizz_buzz_two(15) == "FizzBuzz"
