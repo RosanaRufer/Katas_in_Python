@@ -7,10 +7,13 @@ def divisible_by_5(number: int):
 
 
 def fizz_buzz_two(number: int):
-    if divisible_by_3(number) and divisible_by_5(number):
+    is_divisible_by_3 = divisible_by_3(number)
+    is_divisible_by_5 = divisible_by_5(number)
+
+    if is_divisible_by_3 and is_divisible_by_5:
         return "FizzBuzz"
-    if divisible_by_3(number):
+    if is_divisible_by_3:
         return "Fizz"
-    if divisible_by_5(number):
+    if is_divisible_by_5:
         return "Buzz"
     return str(number)
