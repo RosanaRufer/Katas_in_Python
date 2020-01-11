@@ -1,19 +1,12 @@
-def divisible_by_3(number: int):
-    return number % 3 == 0
-
-
-def divisible_by_5(number: int):
-    return number % 5 == 0
-
-
 def fizz_buzz_two(number: int):
-    is_divisible_by_3 = divisible_by_3(number)
-    is_divisible_by_5 = divisible_by_5(number)
+    three_multiple = number % 3 == 0
+    five_multiple = number % 5 == 0
 
-    if is_divisible_by_3 and is_divisible_by_5:
-        return "FizzBuzz"
-    if is_divisible_by_3:
-        return "Fizz"
-    if is_divisible_by_5:
-        return "Buzz"
-    return str(number)
+    if three_multiple and five_multiple:
+        return 'FizzBuzz'
+    elif three_multiple:
+        return 'Fizz'
+    elif five_multiple:
+        return 'Buzz'
+    else:
+        return str(number)
