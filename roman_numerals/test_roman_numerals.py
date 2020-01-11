@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from roman_numerals import roman_for
+from roman_numerals.roman_numerals import roman_for
 
 
 class TestRomanFor(TestCase):

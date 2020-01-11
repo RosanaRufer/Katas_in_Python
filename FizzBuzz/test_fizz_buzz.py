@@ -1,4 +1,4 @@
-from fizz_buzz import fizz_buzz
+from FizzBuzz.fizz_buzz import fizz_buzz
 
 
 def test_should_return_number_for_non_three_or_five_multiples():
