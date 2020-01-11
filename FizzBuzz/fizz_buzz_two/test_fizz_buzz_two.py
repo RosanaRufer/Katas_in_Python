@@ -13,3 +13,10 @@ def test_general_case_two():
     When I fizzbuzz number 2, I get back a string representing it
     """
     assert fizz_buzz_two(2) == "2"
+
+
+def test_general_case_four():
+    """
+    When I fizzbuzz number 4, I get back a string representing it
+    """
+    assert fizz_buzz_two(4) == "4"
