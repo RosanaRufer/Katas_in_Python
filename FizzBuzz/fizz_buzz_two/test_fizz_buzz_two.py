@@ -31,6 +31,13 @@ def test_divisible_by_three_one():
 
 def test_divisible_by_three_two():
     """
-    When I fizzbuzz number 3, I get back  "Fizz"
+    When I fizzbuzz number 9, I get back  "Fizz"
     """
     assert fizz_buzz_two(9) == "Fizz"
+
+
+def test_divisible_by_five_one():
+    """
+    When I fizzbuzz number 5, I get back  "Buzz"
+    """
+    assert fizz_buzz_two(5) == "Buzz"
