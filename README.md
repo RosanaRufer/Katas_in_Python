@@ -11,3 +11,9 @@ Katas in Python
 -- Avoid technical names like `myMethodReturns5`
 -- Avoid leaking implementation information like `myTestReturnsFalse`
 -- Avoid writing technical tests; you should test behaviours, not the technicality of components
+
+* Make sure tests fail for the right reason
+
+* Ensure you have meaningful feedback from the failing test
+
+* Organize your unit tests to reflect your production code
