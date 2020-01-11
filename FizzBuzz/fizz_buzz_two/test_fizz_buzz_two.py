@@ -22,7 +22,7 @@ def test_general_case_four():
     assert fizz_buzz_two(4) == "4"
 
 
-def test_general_case_three():
+def test_divisible_by_three_one():
     """
     When I fizzbuzz number 3, I get back  "Fizz"
     """
