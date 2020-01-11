@@ -7,8 +7,8 @@ def test_general_case_one():
     """
     assert fizz_buzz_two(1) == "1"
 
-def test_general_case_two():
 
+def test_general_case_two():
     """
     When I fizzbuzz number 2, I get back a string representing it
     """
