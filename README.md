@@ -148,7 +148,7 @@ def score_for(all_rolls):
     :param all_rolls: string
     :return: int
     """
-    return int(all_rolls)
+    return sum([int(n) for n in list(all_rolls)])
 ```
 
 We know this case will work for any combination of numbers which sum is below 10, i.e: 
@@ -184,7 +184,7 @@ of transformation, conditional. Where the **fake it** solution is:
 
 ```python
 def score_for(all_rolls):
-   return int(all_rolls) if all_rolls != 'X' else 10
+   return sum([int(n) for n in list(all_rolls)]) if all_rolls != 'X' else 10
 ```
 
 The last case in the dimension of a first frame would be a spare, which we could represent by any number under 10 plus
@@ -213,7 +213,7 @@ def score_for(all_rolls):
     if all_rolls == 'X' or '/' in all_rolls:
         return 10
     else:
-        return int(all_rolls)
+        return sum([int(n) for n in list(all_rolls)])
 ```
 
 And our test is passing now. Is this a fraud? Well, it is passing for a first frame, which means the implementation

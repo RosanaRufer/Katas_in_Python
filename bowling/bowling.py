@@ -6,7 +6,15 @@ def score_for(all_rolls):
     :param all_rolls: string
     :return: int
     """
-    if all_rolls == 'X' or '/' in all_rolls:
+    frames = all_rolls.split('|')
+
+    if len(frames) > 1:
+        return score_for_frame(frames[0]) + score_for_frame(frames[1])
+    else:
+        return score_for_frame(all_rolls)
+
+def score_for_frame(frame):
+    if frame == 'X' or '/' in frame:
         return 10
     else:
-        return int(all_rolls)
+        return sum([int(n) for n in list(frame)])

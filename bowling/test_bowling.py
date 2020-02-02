@@ -31,3 +31,11 @@ def test_spare_on_second_roll():
     The score should be 10
     """
     assert score_for(all_rolls="3/") == 10
+
+
+def test_spare_on_second_roll():
+    """
+    Given the 10 pins were knocked down on the second roll
+    The score should be 10
+    """
+    assert score_for(all_rolls="31|4") == 8
