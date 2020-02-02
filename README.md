@@ -73,14 +73,14 @@ like to use a different one: ** The bowling kata ** The requirements of this kat
 I would start by implementing my new function returning None as first step. We return None, which
 is the top value in the transformation sequence:
 
-```
+```python
 def score_for(all_rolls):
     return None
 ```
 
 And implement a failing tests for a simple use case:
 
-```
+```python
 def test_no_pins_first_roll():
     """
     Given no pins were knocked down on the first roll
@@ -102,8 +102,20 @@ that with a zero.
 > you, the developer, and any other domain expert (a bowling player or bowl center owner)
 >
 
-The test is failing ❌ and this is great. We always want to start with a failing test
+The test is failing ❌ and this is great! We always want to start with a failing test
 that fails for the right reason and ensures our test cycle is healthy:
 
 ![img](bowling/screenshots/step_1.png)
 
+2. Fake it
+
+We now want to make that test pass by faking the implementation. That is as simple as:
+
+```python
+def score_for(all_rolls):
+    return 0
+```
+
+And we're now in transformation two (constant) and our test is passing ✅:
+
+![img](bowling/screenshots/step_2.png)
