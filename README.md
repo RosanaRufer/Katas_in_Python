@@ -122,7 +122,7 @@ And we're now in transformation level two (constant) and our test is passing ✅
 ![img](bowling/screenshots/step_2.png)
 
 
-### 3. Next failing test - Second roll any amount under 10
+### 3. Second roll any amount under 10
 
 We know that if we test for two rolls with no pins `all_rolls="00"` the test will automatically pass so there
 is no point on testing that, we need to find the next simplest case that fails ❌ and that could be `all_rolls="01"`
@@ -151,11 +151,11 @@ def score_for(all_rolls):
     return int(all_rolls)
 ```
 
-We know this case will work for any combination of numbers which sum is 10 or below, i.e: 
+We know this case will work for any combination of numbers which sum is below 10, i.e: 
 "11", "35", "90", "09"...etc So, once again, there is no point in testing those and we can say we have
 covered one dimension (or use case) of our code.
 
-### 4. Next failing test - Strike on first roll
+### 4. Strike on first roll
 
 The maximum number of pins in a frame is 10. We can reach that number by rolling a strike on the first roll and
 we can consider this to be the next special case. In order to differentiate 1,0 from 10, we'll use the 'X' notation
@@ -186,5 +186,37 @@ of transformation, conditional. Where the **fake it** solution is:
 def score_for(all_rolls):
    return int(all_rolls) if all_rolls != 'X' else 10
 ```
+
+The last case in the dimension of a first frame would be a spare, which we could represent by any number under 10 plus
+a backslash, i.e: "3/"
+
+```python
+def test_spare_on_second_roll():
+    """
+    Given the 10 pins were knocked down on the second roll
+    The score should be 10
+    """
+    assert score_for(all_rolls="3/") == 10
+```
+
+Once we are in level 6, we stay using if statements until the code gets too complex. The **obvious implementation**
+would be:
+
+```python
+def score_for(all_rolls):
+    """
+    Given a set of bowling frames
+    It returns the total score accumulated
+    :param all_rolls: string
+    :return: int
+    """
+    if all_rolls == 'X' or '/' in all_rolls:
+        return 10
+    else:
+        return int(all_rolls)
+```
+
+And our test is passing now. Is this a fraud? Well, it is passing for a first frame, which means the implementation
+is working for a subset of scenarios which is the pure essence of Agile development :-D
 
 

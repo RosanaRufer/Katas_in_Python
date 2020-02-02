@@ -6,4 +6,7 @@ def score_for(all_rolls):
     :param all_rolls: string
     :return: int
     """
-    return int(all_rolls) if all_rolls != 'X' else 10
+    if all_rolls == 'X' or '/' in all_rolls:
+        return 10
+    else:
+        return int(all_rolls)

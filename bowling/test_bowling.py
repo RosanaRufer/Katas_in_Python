@@ -16,9 +16,18 @@ def test_one_pin_second_roll():
     """
     assert score_for(all_rolls="01") == 1
 
+
 def test_strike_on_first_roll():
     """
     Given 10 pins were knocked down on the first roll
     The score should be 10
     """
     assert score_for(all_rolls="X") == 10
+
+
+def test_spare_on_second_roll():
+    """
+    Given the 10 pins were knocked down on the second roll
+    The score should be 10
+    """
+    assert score_for(all_rolls="3/") == 10
