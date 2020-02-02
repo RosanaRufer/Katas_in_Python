@@ -7,3 +7,11 @@ def test_no_pins_first_roll():
     The score should be zero
     """
     assert score_for(all_rolls="0") == 0
+
+
+def test_one_pin_second_roll():
+    """
+    Given one pin was knocked down on the second roll
+    The score should be one
+    """
+    assert score_for(all_rolls="01") == 1

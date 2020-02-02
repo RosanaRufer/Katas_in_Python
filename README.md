@@ -107,7 +107,7 @@ that fails for the right reason and ensures our test cycle is healthy:
 
 ![img](bowling/screenshots/step_1.png)
 
-2. Fake it
+### 2. Fake it
 
 We now want to make that test pass by faking the implementation. That is as simple as:
 
@@ -119,3 +119,19 @@ def score_for(all_rolls):
 And we're now in transformation two (constant) and our test is passing ✅:
 
 ![img](bowling/screenshots/step_2.png)
+
+
+### 3. Next failing test
+
+We know that if we test for two rolls with no pins `all_rolls="00"` the test will automatically pass so there
+is no point on testing that, we need to find the next simplest case that fails and that could be `all_rolls="01"`
+
+
+```python
+def test_one_pin_second_roll():
+    """
+    Given one pin was knocked down on the second roll
+    The score should be one
+    """
+    assert score_for(all_rolls="01") == 1
+```
