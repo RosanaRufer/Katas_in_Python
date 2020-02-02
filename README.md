@@ -47,18 +47,18 @@ you will avoid the impasse.
  
 ### The sequence of transformations
 
-* (() –> None) no code at all->code that employs None
-* (None -> constant)
-* (constant->constant+) a simple constant to a more complex constant
-* (constant->scalar) replacing a constant with a variable or an argument
-* (statement->statements) adding more unconditional statements.
-* (unconditional->if) splitting the execution path
-* (scalar->list)
-* (list->container)
-* (statement->recursion)
-* (if->while)
-* (expression->function) replacing an expression with a function or algorithm
-* (variable->assignment) replacing the value of a variable.
+1 (() –> None) no code at all->code that employs None
+2 (None -> constant)
+3 (constant->constant+) a simple constant to a more complex constant
+4 (constant->scalar) replacing a constant with a variable or an argument
+5 (statement->statements) adding more unconditional statements.
+6 (unconditional->if) splitting the execution path
+7 (scalar->list)
+8 (list->container)
+9 (statement->recursion)
+10 (if->while)
+11 (expression->function) replacing an expression with a function or algorithm
+12 (variable->assignment) replacing the value of a variable.
 
 
 ### An example in Python 
@@ -68,9 +68,9 @@ Kata to illustrate this premise is "Roman Numerals" but I have solved this kata 
 like to use a different one: ** The bowling kata ** The requirements of this kata are very well explained in this
 [Katalist by Codurance](https://katalyst.codurance.com/bowling).
 
-#### 1. First baby step:
+#### 1. First baby step - First roll, zero pins:
 
-I would start by implementing my new function returning None as first step. We return None, which
+One could start by implementing a new function returning None as first step, which
 is the top value in the transformation sequence:
 
 ```python
@@ -93,12 +93,13 @@ For simplicity, I'm using a string type to represent a sequence of rolls.
 This hides the concept of frame, but I am not worried about that yet because
 I don't need to introduce that concept for now.
 
-When there were no pins knocked down, we don't have any score point, and I am representing
-that with a zero.
+When there were no pins knocked down, we don't have any score point, and we are representing
+that with a zero. (Note: this is a design decision that is open to interpretation and the fact that
+we are writing tests makes it much more easier to change our code if the decision has to be modified)
 
 >
 > Note how I am using the 'business' language right from the first test.
-> This is important because it allows to bridge the communication between
+> This is important because it allows to bridge the communication, from the beginning, between
 > you, the developer, and any other domain expert (a bowling player or bowl center owner)
 >
 
@@ -107,7 +108,7 @@ that fails for the right reason and ensures our test cycle is healthy:
 
 ![img](bowling/screenshots/step_1.png)
 
-### 2. Fake it
+### 2. Fake it - Make it pass
 
 We now want to make that test pass by faking the implementation. That is as simple as:
 
@@ -116,15 +117,15 @@ def score_for(all_rolls):
     return 0
 ```
 
-And we're now in transformation two (constant) and our test is passing ✅:
+And we're now in transformation level two (constant) and our test is passing ✅:
 
 ![img](bowling/screenshots/step_2.png)
 
 
-### 3. Next failing test
+### 3. Next failing test - Second roll any amount under 10
 
 We know that if we test for two rolls with no pins `all_rolls="00"` the test will automatically pass so there
-is no point on testing that, we need to find the next simplest case that fails and that could be `all_rolls="01"`
+is no point on testing that, we need to find the next simplest case that fails ❌ and that could be `all_rolls="01"`
 
 
 ```python
@@ -135,3 +136,55 @@ def test_one_pin_second_roll():
     """
     assert score_for(all_rolls="01") == 1
 ```
+
+And we can make this test pass ✅ by simply converting the string into an int, so that we'll be in transformation
+ number 5) statement :
+
+```python
+def score_for(all_rolls):
+    """
+    Given a set of bowling frames
+    It returns the total score accumulated
+    :param all_rolls: string
+    :return: int
+    """
+    return int(all_rolls)
+```
+
+We know this case will work for any combination of numbers which sum is 10 or below, i.e: 
+"11", "35", "90", "09"...etc So, once again, there is no point in testing those and we can say we have
+covered one dimension (or use case) of our code.
+
+### 4. Next failing test - Strike on first roll
+
+The maximum number of pins in a frame is 10. We can reach that number by rolling a strike on the first roll and
+we can consider this to be the next special case. In order to differentiate 1,0 from 10, we'll use the 'X' notation
+for a strike on the first roll of a frame.
+
+> Note: Here I am making another design decision: when the first roll is a strike
+> the score could stay unchanged, waiting for the next two rolls, but instead
+> I am going to return the accumulated score which could be
+> a wrong decision but because we are using TDD, we are safe to change behavior
+> later if we find out the implementation doesnt the stakeholder needs
+
+> I don't care about the future, **I feel safe**, all of this can be easily changed thanks to 
+> the automated tests supporting my code.
+
+```python
+def test_strike_on_first_roll():
+    """
+    Given 10 pins were knocked down on the first roll
+    The score should be 10
+    """
+    assert score_for(all_rolls="X") == 10
+```
+
+And, of course, this test fails and we make sure it does. To make it pass we'll move to the 6th level 
+of transformation, conditional. Where the **fake it** solution is:
+
+```python
+def score_for(all_rolls):
+   return int(all_rolls) if all_rolls != 'X' else 10
+```
+
+
