@@ -7,12 +7,15 @@ def score_for(all_rolls):
     :return: int
     """
     frames = all_rolls.split('|')
-
+    # ["31","4"]
     if len(frames) > 1:
         index = 0
         acc = 0
         while index < 10 and len(frames) > index:
-            acc = acc + score_for_frame(frames[index])
+            sff = score_for_frame(frames[index])
+            acc = acc + sff
+            if (sff == 10) and len(frames) > index:
+                acc = acc + score_for_frame(frames[index+1])
             index = index + 1
         return acc
     else:
@@ -22,4 +25,7 @@ def score_for_frame(frame):
     if frame == 'X' or '/' in frame:
         return 10
     else:
-        return sum([int(n) for n in list(frame)])
+        # '31'
+        numbers = [int(n) for n in list(frame)]
+        # [3, 1]
+        return sum(numbers)
