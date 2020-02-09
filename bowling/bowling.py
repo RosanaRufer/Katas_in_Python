@@ -1,4 +1,3 @@
-
 def score_for(all_rolls):
     """
     Given a set of bowling frames
@@ -16,17 +15,26 @@ def score_for(all_rolls):
             sff = score_for_frame(frames[index])
             acc = acc + sff
             if ('X' in frames[index]) and nframes > index:
-                acc = acc + score_for_frame(frames[index+1])
+                acc = acc + score_for_frame(frames[index + 1])
+            if ('/' in frames[index]) and nframes > index:
+                acc = acc + score_for_first_roll(frames[index + 1])
             index = index + 1
         return acc
     else:
         return score_for_frame(all_rolls)
 
+
+def score_for_first_roll(frame):
+    first_roll = frame[0]
+    if first_roll in ['X', '/']:
+        return 10
+    else:
+        return int(first_roll)
+
+
 def score_for_frame(frame):
     if frame == 'X' or '/' in frame:
         return 10
     else:
-        # '31'
         numbers = [int(n) for n in list(frame)]
-        # [3, 1]
         return sum(numbers)
