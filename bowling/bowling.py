@@ -4,28 +4,37 @@ SPARE = '/'
 
 def score_for(all_rolls):
     """
-    Given a set of bowling frames
+    Given valid a set of bowling frames
     It returns the total score accumulated
     :param all_rolls: string
     :return: int
     """
     frames = all_rolls.split('|')
-    last_index = len(frames) - 1
     total_score = 0
 
     for index, frame in enumerate(frames):
+
         current_frame_score = score_for_frame(frame)
 
-        next_index = index + 1
-
-        if (STRIKE in frame) and next_index <= last_index:
-            current_frame_score = current_frame_score + score_for_frame(frames[next_index])
-        if (SPARE in frame) and next_index <= last_index:
-            current_frame_score = current_frame_score + score_for_first_roll(frames[next_index])
+        next_frame = get_next_frame(frames, index)
+        if (STRIKE in frame) and next_frame:
+            current_frame_score = current_frame_score + score_for_frame(next_frame)
+        if (SPARE in frame) and next_frame:
+            current_frame_score = current_frame_score + score_for_first_roll(next_frame)
 
         total_score = total_score + current_frame_score
 
     return total_score
+
+
+def get_next_frame(frames, index):
+    frame = False
+    try:
+        frame = frames[index + 1]
+    except IndexError:
+        pass
+
+    return frame
 
 
 def score_for_first_roll(frame):

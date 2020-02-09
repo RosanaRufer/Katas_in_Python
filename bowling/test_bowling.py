@@ -49,3 +49,9 @@ def test_finished_game_no_bonus_balls():
     assert score_for(
         all_rolls='01|01|01|01|01|01|01|01|01|01|'
     ) == 10
+
+
+def test_finished_game_final_spare():
+    assert score_for(
+        all_rolls='01|01|01|01|01|01|01|01|01|1/|X'
+    ) == 39
