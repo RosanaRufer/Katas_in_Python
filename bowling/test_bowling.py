@@ -46,4 +46,11 @@ def test_strike_first_frame_and_roll_second_frame():
     Given the 10 pins were knocked down on the second roll
     The score should be 10
     """
-    assert score_for(all_rolls="X|4") == 18
+    assert score_for(all_rolls="X|41") == 20
+
+def test_spare_first_frame_and_roll_second_frame():
+    """
+    Given the 10 pins were knocked down on the second roll
+    The score should be 10
+    """
+    assert score_for(all_rolls="3/|41") == 19

@@ -7,14 +7,15 @@ def score_for(all_rolls):
     :return: int
     """
     frames = all_rolls.split('|')
-    # ["31","4"]
-    if len(frames) > 1:
+    nframes = len(frames)
+
+    if nframes > 1:
         index = 0
         acc = 0
-        while index < 10 and len(frames) > index:
+        while index < 10 and nframes > index:
             sff = score_for_frame(frames[index])
             acc = acc + sff
-            if (sff == 10) and len(frames) > index:
+            if ('X' in frames[index]) and nframes > index:
                 acc = acc + score_for_frame(frames[index+1])
             index = index + 1
         return acc
