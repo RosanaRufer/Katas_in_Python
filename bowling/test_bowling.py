@@ -43,3 +43,9 @@ def test_spare_first_frame_and_roll_second_frame():
 
 def test_two_strikes():
     assert score_for(all_rolls="X|X") == 30
+
+
+def test_finished_game_no_bonus_balls():
+    assert score_for(
+        all_rolls='01|01|01|01|01|01|01|01|01|01|'
+    ) == 10
