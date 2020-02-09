@@ -2,10 +2,10 @@ STRIKE = 'X'
 SPARE = '/'
 
 
-def score_for(all_rolls):
+def score_for(all_rolls: str):
     """
     Given valid a set of bowling frames
-    It returns the total score accumulated
+    It returns the total accumulated score
     :param all_rolls: string
     :return: int
     """
@@ -38,7 +38,7 @@ def get_next_frame(frames: [str], current_index: int):
     return frame
 
 
-def score_for_first_roll(frame):
+def score_for_first_roll(frame: str):
     """ Returns the points of the first roll in a frame """
     first_roll = frame[0]
     if first_roll in [STRIKE, SPARE]:
@@ -47,7 +47,7 @@ def score_for_first_roll(frame):
         return int(first_roll)
 
 
-def score_for_frame(frame):
+def score_for_frame(frame: str):
     """ Returns the points obtained in a frame """
     if SPARE in frame or STRIKE in frame:
         return 10
