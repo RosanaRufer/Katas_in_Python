@@ -33,9 +33,18 @@ def test_spare_on_second_roll():
     assert score_for(all_rolls="3/") == 10
 
 
-def test_spare_on_second_roll():
+def test_no_spare_or_strike_and_second_frame():
     """
     Given the 10 pins were knocked down on the second roll
     The score should be 10
     """
     assert score_for(all_rolls="31|4") == 8
+
+
+def test_strike_first_frame_and_roll_second_frame():
+    """
+    Given the 10 pins were knocked down on the second roll
+    The score should be 10
+    """
+    assert score_for(all_rolls="X|4") == (10+4) + 4
+

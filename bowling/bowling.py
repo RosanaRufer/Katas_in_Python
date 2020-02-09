@@ -9,7 +9,12 @@ def score_for(all_rolls):
     frames = all_rolls.split('|')
 
     if len(frames) > 1:
-        return score_for_frame(frames[0]) + score_for_frame(frames[1])
+        index = 0
+        acc = 0
+        while index < 10 and len(frames) > index:
+            acc = acc + score_for_frame(frames[index])
+            index = index + 1
+        return acc
     else:
         return score_for_frame(all_rolls)
 
