@@ -27,10 +27,11 @@ def score_for(all_rolls):
     return total_score
 
 
-def get_next_frame(frames, index):
+def get_next_frame(frames: [str], current_index: int):
+    """ If next frame exists, returns next frame, else returns False """
     frame = False
     try:
-        frame = frames[index + 1]
+        frame = frames[current_index + 1]
     except IndexError:
         pass
 
@@ -38,6 +39,7 @@ def get_next_frame(frames, index):
 
 
 def score_for_first_roll(frame):
+    """ Returns the points of the first roll in a frame """
     first_roll = frame[0]
     if first_roll in [STRIKE, SPARE]:
         return 10
@@ -46,6 +48,7 @@ def score_for_first_roll(frame):
 
 
 def score_for_frame(frame):
+    """ Returns the points obtained in a frame """
     if SPARE in frame or STRIKE in frame:
         return 10
     else:
